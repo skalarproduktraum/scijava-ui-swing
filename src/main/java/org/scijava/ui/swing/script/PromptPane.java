@@ -30,20 +30,17 @@
 
 package org.scijava.ui.swing.script;
 
-import static java.awt.event.KeyEvent.VK_DOWN;
-import static java.awt.event.KeyEvent.VK_ENTER;
-import static java.awt.event.KeyEvent.VK_UP;
+import org.scijava.script.ScriptREPL;
+import org.scijava.widget.UIComponent;
 
-import java.awt.Rectangle;
+import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.PrintStream;
 
-import javax.swing.JTextArea;
-import javax.swing.text.BadLocationException;
-
-import org.scijava.script.ScriptREPL;
-import org.scijava.widget.UIComponent;
+import static java.awt.event.KeyEvent.*;
 
 /**
  * The prompt for the script REPL.
@@ -62,6 +59,11 @@ public abstract class PromptPane implements UIComponent<JTextArea> {
 	{
 		textArea = new TextArea(3, 2);
 		textArea.setLineWrap(true);
+		
+		final Font font = new Font("Courier", Font.PLAIN, 12);
+		textArea.setFont(font);
+		textArea.setTabSize(4);
+
 		this.repl = repl;
 		this.output = output;
 		textArea.addKeyListener(new KeyAdapter() {

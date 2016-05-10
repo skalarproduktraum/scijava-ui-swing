@@ -30,14 +30,15 @@
 
 package org.scijava.ui.swing.script;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-
 import org.scijava.Context;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.prefs.PrefService;
+import org.scijava.script.ScriptInterpreter;
+import org.scijava.script.ScriptREPL;
 import org.scijava.script.ScriptService;
+
+import javax.swing.*;
 
 /**
  * The main interpreter window.
@@ -82,6 +83,16 @@ public class InterpreterWindow extends JFrame {
 		// write out interpreter histories, etc., when frame goes away
 		pane.dispose();
 		super.dispose();
+	}
+
+	/** Returns the @link{ScriptREPL} associated to the InterpreterWindow **/
+	public ScriptREPL getREPL() {
+		return pane.getREPL();
+	}
+
+	/** Returns the @link{ScriptInterpreter} associated with the REPL directly **/
+	public ScriptInterpreter getInterpreter() {
+		return pane.getREPL().getInterpreter();
 	}
 
 	// -- Helper methods --
